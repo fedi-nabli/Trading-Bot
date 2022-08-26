@@ -1,5 +1,6 @@
 import tkinter as tk
 import logging
+from binance_futures import get_contracts
 
 logger = logging.getLogger()
 
@@ -18,5 +19,21 @@ logger.addHandler(stream_handler)
 logger.addHandler(file_handler)
 
 if __name__ == '__main__':
+  contracts = get_contracts()
+
   root = tk.Tk()
+
+  i = 0
+  j = 0
+
+  for contract in contracts:
+    label_widget = tk.Label(root, text=contract)
+    label_widget.grid(row=i, column=j)
+
+    if i == 4:
+      j += 1
+      i = 0
+    else:
+      i += 1
+
   root.mainloop()
