@@ -4,7 +4,7 @@ import requests
 logger = logging.getLogger()
 
 class BinanceFuturesClient:
-  def __int__(self, testnet):
+  def __init__(self, testnet):
     if testnet:
       self.base_url = "https://testnet.binancefuture.com"
     else:
@@ -52,7 +52,7 @@ class BinanceFuturesClient:
       for candle in raw_candles:
         candles.append([candle[0], float(candle[1]), float(candle[2]), float(candle[3]), float(candle[4]), float(candle[5])])
 
-    return
+    return candles
 
   def get_bid_ask(self, symbol):
     data = dict()
